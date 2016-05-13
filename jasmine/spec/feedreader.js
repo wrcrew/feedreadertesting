@@ -37,8 +37,7 @@ $(function() {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
                 //console.log(allFeeds[i].url);
-            };
-            
+            }
         });
 
         /* A test that loops through each feed
@@ -51,20 +50,17 @@ $(function() {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
                 //console.log(allFeeds[i].name);
-            };
+            }
         });
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* A new test suite named "The menu" */
 
     describe('The menu', function() {
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        /* A test that ensures the menu element is
+         * hidden by default. */
 
         it('should be hidden by default', function() {
 
@@ -72,9 +68,9 @@ $(function() {
             //console.log(document.body.className);
         });
 
-         /* TODO: Write a test that ensures the menu changes
+         /* A test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
+          * has two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
 
@@ -112,29 +108,25 @@ $(function() {
         
     });
 
-
+    //a new test suite named "New Feed Selection"
 
     describe('New Feed Selection', function() {
 
         var oldFeed;
-        //console.log(oldFeed);
-
-        beforeEach(function(done) {
+        /* A test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         */
+        it('when new feed is loaded, content does not equal previous feed', function(done) {
+            
             loadFeed(0, function() {
-            oldFeed = $('.feed').html();
-            loadFeed(1, done);
+                oldFeed = $('.feed').html();
+                //console.log($('.feed').html());
+                loadFeed(1, function() {
+                    //console.log($('.feed').html());
+                    expect($('.feed').html()).not.toEqual(oldFeed);
+                    done();
+                }); 
             });
         });
-
-        it('when new feed is loaded, content does not equal previous feed', function() {
-            expect($('.feed').html()).not.toEqual(oldFeed);
-        });
-    /* TODO: Write a new test suite named "New Feed Selection"
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-
     });
 }());
