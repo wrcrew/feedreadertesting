@@ -27,32 +27,31 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
 
-        it('each feed object has a URL defined', function(done) {
+        it('each feed object has a URL defined', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe(0);
+                expect(allFeeds[i].url.length).not.toBe(0);
                 //console.log(allFeeds[i].url);
             };
-            done();
+            
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
 
-        it('each feed object has a name defined', function(done) {
+        it('each feed object has a name defined', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe(0);
+                expect(allFeeds[i].name.length).not.toBe(0);
                 //console.log(allFeeds[i].name);
             };
-            done();
         });
     });
 
@@ -81,13 +80,13 @@ $(function() {
 
         it('should appear when clicked', function() {
 
-                $('a.menu-icon-link').trigger('click');
-                expect($('body').hasClass('menu-hidden')).toEqual(false);
+            $('a.menu-icon-link').trigger('click');
+            expect($('body').hasClass('menu-hidden')).toEqual(false);
         });
 
         it('should disappear when clicked again', function() {
-                $('a.menu-icon-link').trigger('click');
-                expect($('body').hasClass('menu-hidden')).toEqual(true);
+            $('a.menu-icon-link').trigger('click');
+            expect($('body').hasClass('menu-hidden')).toEqual(true);
         });   
     
     });
@@ -95,23 +94,22 @@ $(function() {
 
     describe('Initial Entries', function() {
     
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* A new test suite named "Initial Entries" */
 
+    /*loadFeed() is asynchronous so this test requires the use of Jasmine's beforeEach and asynchronous done() function. */
         beforeEach(function(done) {
             loadFeed(0, done);
         });
 
-        it('when feeds are loaded, it should have at least 1 entry', function() {
-            expect($('.feed')).not.toBe(0);
-            //console.log($('.feed'));   
-
-        });
-        /* TODO: Write a test that ensures when the loadFeed
+        /* A test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
+        it('when feeds are loaded, it should have at least 1 entry', function() {
+            expect($('article.entry').length).not.toBe(0); 
+        });
+        
     });
 
 
